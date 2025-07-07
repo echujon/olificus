@@ -1,7 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<div>
-    <img src="/images/olificus.jpg">
+<style>
+    .image-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    @media (min-width: 768px) {
+        .image-wrapper img {
+            max-width: 800px;
+        }
+
+        .overlay-text {
+            max-width: 800px;
+        }
+    }
+
+    .overlay-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        text-shadow: 0 0 5px black;
+        pointer-events: none;
+        width: 100%;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        font-size: 6.3em;
+    }
+
+    /* Top text specific */
+    .overlay-text.top {
+        top: 10px;
+    }
+
+    /* Bottom text specific */
+    .overlay-text.bottom {
+        bottom: 10px;
+        font-size: 4.5em;
+    }
+</style>
+<div class="image-wrapper">
+    <img src="/images/olificus.jpg" alt="Olificus">
+    <div class="overlay-text top">Olificus</div>
+    <div class="overlay-text bottom">Coming Soon...</div>
 </div>
 
 </html>
