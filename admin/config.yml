@@ -3,7 +3,7 @@ backend:
   local_backend: true
   repo: echujon/olificus
   branch: main
-
+  auth_endpoint: /api/auth
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
