@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .images img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Desktop view - constrain max width and center */
+        @media (min-width: 768px) {
+            .images img {
+                max-width: 800px;
+            }
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Center images inside article content */
+        article p {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        article img {
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            object-fit: contain;
+        }
+
+        /* Desktop view - constrain article images */
+        @media (min-width: 768px) {
+            article img {
+                max-width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    {% if image %}
+      <div class="images">
+        <img src="{{ image }}" alt="{{ alt | default('Post image') }}">
+      </div>
+    {% endif %}
+
+    <article>
+      {{ content | safe }}
+    </article>
+</body>
+</html>
