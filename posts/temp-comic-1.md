@@ -1,7 +1,7 @@
 ---
 title: Temp Comic 1
 ---
-![Olives](/images/uploads/1000000089.png)
+![A long time ago in ancient Greece..](/images/uploads/1000000089.png)
 
 ![](/images/uploads/1000000284.png)
 
