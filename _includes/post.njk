@@ -64,6 +64,17 @@
                 max-width: 800px;
             }
         }
+
+        /* Caption styling */
+        .image-caption {
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            /*font-style: italic;*/
+            max-width: 800px;
+        }
     </style>
 </head>
 <body>
@@ -78,5 +89,25 @@
     <article>
       {{ content | safe }}
     </article>
+
+    <script>
+      // Add captions below images that have alt text
+      document.addEventListener('DOMContentLoaded', function() {
+        const articleImages = document.querySelectorAll('article img[alt]');
+        articleImages.forEach(function(img) {
+          if (img.alt && img.alt.trim() !== '') {
+            const caption = document.createElement('div');
+            caption.className = 'image-caption';
+            caption.textContent = img.alt;
+
+            // Insert caption after the parent paragraph
+            const parent = img.parentElement;
+            if (parent && parent.tagName === 'P') {
+              parent.insertAdjacentElement('afterend', caption);
+            }
+          }
+        });
+      });
+    </script>
 </body>
 </html>

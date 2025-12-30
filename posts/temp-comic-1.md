@@ -1,7 +1,7 @@
 ---
 title: Temp Comic 1
 ---
-![](/images/uploads/1000000089.png "Olives")
+![Olives](/images/uploads/1000000089.png)
 
 ![](/images/uploads/1000000284.png)
 
