@@ -11,8 +11,6 @@ title: Temp Comic 1
 
 ![](/images/uploads/1000000703.png)
 
-
-
 ![](/images/uploads/1000000486.png)
 
 ![](/images/uploads/1000000487.png)
@@ -20,3 +18,9 @@ title: Temp Comic 1
 ![](/images/uploads/1000000704.png)
 
 ![](/images/uploads/1000000705.png)
+
+![](/images/uploads/1000000706.png)
+
+![](/images/uploads/1000000707.png)
+
+![](/images/uploads/1000000708.png)
