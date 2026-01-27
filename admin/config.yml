@@ -9,11 +9,19 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "posts"
+  - name: "comic"
+    label: "Comic"
+    folder: "comic"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Alt Text", name: "alt", widget: "string", required: false }
+          - { label: "Caption", name: "caption", widget: "text", required: false }

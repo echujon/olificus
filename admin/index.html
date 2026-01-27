@@ -4,11 +4,72 @@
 <head>
     <meta charset="utf-8">
     <title>Content Manager</title>
-
+    <style>
+        .preview-image-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .preview-image-container img {
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            object-fit: contain;
+        }
+        .preview-caption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <script>
+        // Custom preview template
+        var PostPreview = createClass({
+            render: function() {
+                var entry = this.props.entry;
+                var title = entry.getIn(['data', 'title']);
+                var images = entry.getIn(['data', 'images']);
+                var widgetFor = this.props.widgetFor;
+                var h = this.props.h || window.h;
+
+                var elements = [];
+
+                // Title
+                elements.push(h('h1', {}, title));
+
+                // Images with captions
+                if (images && images.size > 0) {
+                    images.forEach(function(image, index) {
+                        var imgSrc = image.get('image');
+                        var imgAlt = image.get('alt') || '';
+                        var caption = image.get('caption');
+
+                        var imgChildren = [h('img', { src: imgSrc, alt: imgAlt })];
+                        if (caption) {
+                            imgChildren.push(h('div', { className: 'preview-caption' }, caption));
+                        }
+
+                        elements.push(
+                            h('div', { key: 'img-' + index, className: 'preview-image-container' }, imgChildren)
+                        );
+                    });
+                }
+
+                // Body content - use widgetFor to render markdown
+                if (widgetFor && entry.getIn(['data', 'body'])) {
+                    elements.push(h('div', { key: 'body' }, widgetFor('body')));
+                }
+
+                return h('div', {}, elements);
+            }
+        });
+
+        CMS.registerPreviewTemplate('comic', PostPreview);
+    </script>
 </body>
 
 </html>
