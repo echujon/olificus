@@ -5,7 +5,9 @@ title: Temp Comic 1
 
 ![Athena was enjoying some olives](/images/uploads/1000000284.png)
 
-![](/images/uploads/1000000285.png)
+![While a goatherder slept with his goat nearby](/images/uploads/1000000285.png)
+
+
 
 ![](/images/uploads/1000000485.png)
 
