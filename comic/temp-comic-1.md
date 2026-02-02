@@ -1,6 +1,7 @@
 ---
 title: Temp Comic 1
 layout: comic.njk
+images: []
 ---
 ![A long time ago in ancient Greece..](/images/uploads/1000000227.png)
 
@@ -25,3 +26,7 @@ layout: comic.njk
 ![](/images/uploads/1000000707.png)
 
 ![](/images/uploads/1000000708.png)
+
+![](/images/uploads/1000000769.png)
+
+![](/images/uploads/1000000770.png)
