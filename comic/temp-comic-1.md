@@ -5,11 +5,11 @@ images: []
 ---
 ![A long time ago in ancient Greece..](/images/uploads/1000000227.png)
 
-![Athena was enjoying some olives](/images/uploads/1000000284.png)
+![Athena was enjoying some olives.](/images/uploads/1000000284.png)
 
-![](/images/uploads/1000000285.png)
+![Not too far away, a goat herder was sleeping with his goat nearby.](/images/uploads/1000000285.png)
 
-![](/images/uploads/1000000485.png)
+![Unfortunately, he napped longer than intended.](/images/uploads/1000000485.png)
 
 ![](/images/uploads/1000000703.png)
 
