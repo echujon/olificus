@@ -108,7 +108,7 @@
     <h1>{{ title }}</h1>
 
     <article>
-      {% if images %}
+      {% if images and images.length > 0 %}
         {% for item in images %}
           <p>
             <img src="{{ item.image }}" alt="{{ item.alt | default('') }}">
@@ -117,11 +117,7 @@
             <div class="image-caption">{{ item.caption }}</div>
           {% endif %}
         {% endfor %}
-      {% endif %}
-
-      {% if body %}
-        {{ body | safe }}
-      {% elif not images %}
+      {% else %}
         {{ content | safe }}
       {% endif %}
     </article>
