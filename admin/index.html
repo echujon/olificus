@@ -69,6 +69,57 @@
         });
 
         CMS.registerPreviewTemplate('comic', PostPreview);
+
+        // Register editor component for image with caption
+        CMS.registerEditorComponent({
+            id: "image-with-caption",
+            label: "Image with Caption",
+            fields: [
+                {
+                    name: "image",
+                    label: "Image",
+                    widget: "image"
+                },
+                {
+                    name: "alt",
+                    label: "Alt Text",
+                    widget: "string",
+                    required: false
+                },
+                {
+                    name: "caption",
+                    label: "Caption",
+                    widget: "text",
+                    required: false
+                }
+            ],
+            pattern: /<figure>\s*<img src="([^"]+)" alt="([^"]*)">\s*<figcaption>(.*?)<\/figcaption>\s*<\/figure>/,
+            fromBlock: function(match) {
+                return {
+                    image: match[1],
+                    alt: match[2] || '',
+                    caption: match[3] || ''
+                };
+            },
+            toBlock: function(obj) {
+                var html = '<figure>\n';
+                html += '  <img src="' + obj.image + '" alt="' + (obj.alt || '') + '">\n';
+                if (obj.caption) {
+                    html += '  <figcaption>' + obj.caption + '</figcaption>\n';
+                }
+                html += '</figure>';
+                return html;
+            },
+            toPreview: function(obj) {
+                var html = '<figure style="text-align: center; margin: 2rem 0;">';
+                html += '<img src="' + obj.image + '" alt="' + (obj.alt || '') + '" style="max-width: 100%; height: auto;">';
+                if (obj.caption) {
+                    html += '<figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">' + obj.caption + '</figcaption>';
+                }
+                html += '</figure>';
+                return html;
+            }
+        });
     </script>
 </body>
 
