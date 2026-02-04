@@ -15,7 +15,7 @@ images: []
 
 <figure>
   <img src="/images/uploads/1000000285.png" alt="">
-  <figcaption>Not too far away, a goat herder named Oliver the second was sleeping with his goat nearby.</figcaption>
+  <figcaption>Not too far away, a goat herder named Oli was sleeping with his goat nearby.</figcaption>
 </figure>
 
 <figure>
