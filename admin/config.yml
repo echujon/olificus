@@ -13,9 +13,10 @@ collections:
     label: "Comic"
     folder: "comic"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL Slug (filename)", name: "slug", widget: "string", hint: "This will be the filename and URL" }
       - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Images"
         name: "images"
