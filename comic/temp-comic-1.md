@@ -25,40 +25,51 @@ images: []
 
 <figure>
   <img src="/images/uploads/1000000703.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000486.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000487.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000704.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000705.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000706.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000707.png" alt="">
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000708.png" alt="">
+  <figcaption/>
+
 </figure>
 
 <figure>
-  <img src="/images/uploads/1000000769.png" alt="">
+  <img src="/images/uploads/1000000769.png" alt=""> 
+  <figcaption/>
 </figure>
 
 <figure>
   <img src="/images/uploads/1000000770.png" alt="">
+  <figcaption/>
 </figure>
