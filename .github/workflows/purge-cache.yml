@@ -1,0 +1,54 @@
+name: Purge Cloudflare Cache on Deploy
+
+on:
+  # Trigger when pushing to main branch (after CMS commits)
+  push:
+    branches:
+      - main
+    paths:
+      - 'comic/**'
+      - '_includes/**'
+      - 'images/**'
+
+jobs:
+  purge-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get list of changed comic files
+          CHANGED_COMICS=$(git diff --name-only HEAD~1 HEAD | grep '^comic/' | sed 's/\.md$//' | sed 's|^comic/|https://olificus.com/comic/|' || echo "")
+
+          # Get list of changed images
+          CHANGED_IMAGES=$(git diff --name-only HEAD~1 HEAD | grep '^images/' | sed 's|^|https://olificus.com/|' || echo "")
+
+          # Combine and format as JSON array
+          ALL_URLS=$(echo -e "$CHANGED_COMICS\n$CHANGED_IMAGES" | grep -v '^$' | jq -R . | jq -s .)
+
+          echo "urls=$ALL_URLS" >> $GITHUB_OUTPUT
+          echo "Changed URLs: $ALL_URLS"
+
+      - name: Wait for Cloudflare Pages deployment
+        run: sleep 30
+
+      - name: Purge specific URLs from Cloudflare Cache
+        if: steps.changed-files.outputs.urls != '[]'
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data "{\"files\": ${{ steps.changed-files.outputs.urls }}}"
+
+      - name: Purge home page if includes changed
+        if: contains(github.event.head_commit.modified, '_includes/')
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"files": ["https://olificus.com/"]}'

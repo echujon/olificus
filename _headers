@@ -1,9 +1,9 @@
-# Cache control for HTML pages - check for updates in background
+# Cache control for HTML pages - long cache, purged on publish
 /comic/*
-  Cache-Control: public, s-maxage=60, stale-while-revalidate=86400
+  Cache-Control: public, s-maxage=31536000, stale-while-revalidate=31536000
 
 /*
-  Cache-Control: public, s-maxage=60, stale-while-revalidate=86400
+  Cache-Control: public, s-maxage=31536000, stale-while-revalidate=31536000
 
 # Longer cache for static assets (images, fonts)
 /images/*
