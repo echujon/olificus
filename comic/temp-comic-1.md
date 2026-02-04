@@ -1,5 +1,5 @@
 ---
-title: Temp Comic 1
+title: "New Beginnings "
 layout: comic.njk
 images: []
 ---
