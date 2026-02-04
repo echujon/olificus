@@ -93,7 +93,7 @@
                     required: false
                 }
             ],
-            pattern: /<figure>\s*<img src="([^"]+)" alt="([^"]*)">\s*<figcaption>(.*?)<\/figcaption>\s*<\/figure>/,
+            pattern: /<figure>\s*<img src="([^"]+)" alt="([^"]*)">\s*(?:<figcaption>(.*?)<\/figcaption>)?\s*<\/figure>/,
             fromBlock: function(match) {
                 return {
                     image: match[1],
