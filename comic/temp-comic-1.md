@@ -1,6 +1,7 @@
 ---
 title: "New Beginnings "
 layout: comic.njk
+slug: s1-1
 images: []
 ---
 <figure>
