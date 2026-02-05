@@ -6,6 +6,11 @@
     <title>Olifcus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;
+        }
         .image-wrapper {
             position: relative;
             display: flex;
@@ -57,12 +62,60 @@
             bottom: 10px;
             font-size: clamp(1rem, 8vw, 4rem);
         }
+
+        /* Comic preview section */
+        .comic-preview {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .comic-preview a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s;
+        }
+
+        .comic-preview a:hover {
+            transform: scale(1.02);
+        }
+
+        .comic-preview img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .comic-preview h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .new-badge {
+            background-color: #ff4444;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
     </style>
 </head>
-<div class="image-wrapper">
-    <img src="/images/olificus.jpg" alt="Olificus">
-    <div class="overlay-text top">Olificus</div>
-    <div class="overlay-text bottom">Coming Soon...</div>
-</div>
+<body>
+{% include "navbar.njk" %}
 
+<div class="comic-preview">
+    <a href="/comic/s1/e1/">
+        <h2>
+            New Beginnings
+            <span class="new-badge">New!</span>
+        </h2>
+        <img src="/images/uploads/1000000486.png" alt="New Beginnings">
+    </a>
+</div>
+</body>
 </html>

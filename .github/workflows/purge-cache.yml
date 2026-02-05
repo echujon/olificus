@@ -41,8 +41,8 @@ jobs:
           # Get list of changed images
           IMAGE_URLS=$(git diff --name-only HEAD~1 HEAD | grep '^images/' | sed 's|^|https://olificus.com/|' || true)
 
-          # Combine all URLs and format as JSON array
-          ALL_URLS=$(printf "%s\n%s" "$COMIC_URLS" "$IMAGE_URLS" | grep -v '^$' | jq -Rs 'split("\n") | map(select(length > 0))')
+          # Combine all URLs and format as compact JSON array (no pretty printing)
+          ALL_URLS=$(printf "%s\n%s" "$COMIC_URLS" "$IMAGE_URLS" | grep -v '^$' | jq -Rsc 'split("\n") | map(select(length > 0))')
 
           echo "urls=$ALL_URLS" >> $GITHUB_OUTPUT
           echo "Changed URLs: $ALL_URLS"

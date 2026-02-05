@@ -1,0 +1,82 @@
+<style>
+    .navbar {
+        background-color: #333;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .navbar-logo img {
+        height: 40px;
+        width: auto;
+        border-radius: 8px;
+    }
+
+    .navbar-logo:hover {
+        color: #ddd;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.2s;
+    }
+
+    .navbar-links a:hover {
+        color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-container {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .navbar-links {
+            gap: 1rem;
+        }
+    }
+</style>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/" class="navbar-logo">
+            <img src="/images/olificus.jpg" alt="Olificus">
+            <span>Olificus</span>
+        </a>
+        <ul class="navbar-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/comic/s1/e1/">Comic</a></li>
+        </ul>
+    </div>
+</nav>
