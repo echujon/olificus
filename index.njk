@@ -122,8 +122,12 @@ pagination:
             {{ latestComic.data.title }}
             <span class="new-badge">New!</span>
         </h2>
-        {% set firstImage = latestComic.content | safe | split('<img src="') | last | split('"') | first %}
-        <img src="{{ firstImage }}" alt="{{ latestComic.data.title }}">
+        {% if latestComic.data.preview_image %}
+            <img src="{{ latestComic.data.preview_image }}" alt="{{ latestComic.data.title }}">
+        {% else %}
+            {% set firstImage = latestComic.content | extractFirstImage %}
+            <img src="{{ firstImage }}" alt="{{ latestComic.data.title }}">
+        {% endif %}
     </a>
 </div>
 {% endif %}

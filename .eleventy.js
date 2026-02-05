@@ -12,6 +12,12 @@ module.exports = function(eleventyConfig) {
         });
     });
 
+    // Add filter to extract first image from content
+    eleventyConfig.addFilter("extractFirstImage", function(content) {
+        const match = content.match(/<img[^>]+src="([^">]+)"/);
+        return match ? match[1] : '';
+    });
+
     return {
       dir: {
         input: ".",

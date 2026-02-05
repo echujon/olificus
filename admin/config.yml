@@ -18,6 +18,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "URL Slug", name: "slug", widget: "string", hint: "URL path for this comic (e.g., s1-e1)" }
       - { label: "Permalink", name: "permalink", widget: "hidden", default: "/{{slug}}/" }
+      - { label: "Preview Image", name: "preview_image", widget: "image", required: false, hint: "Image to show on home page" }
       - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Images"
         name: "images"
