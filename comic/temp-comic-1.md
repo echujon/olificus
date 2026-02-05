@@ -57,7 +57,7 @@ images: []
 </figure>
 
 <figure>
-  <img src="/images/uploads/1000000769.png" alt="">
+  <img src="/images/uploads/1000000774.png" alt="">
 </figure>
 
 <figure>
