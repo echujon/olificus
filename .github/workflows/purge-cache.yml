@@ -9,6 +9,10 @@ on:
       - 'comic/**'
       - '_includes/**'
       - 'images/**'
+      - 'admin/**'
+      - '*.js'
+      - '*.json'
+      - '_site/**'
 
 jobs:
   purge-cache:
@@ -22,14 +26,23 @@ jobs:
       - name: Get changed files
         id: changed-files
         run: |
-          # Get list of changed comic files
-          CHANGED_COMICS=$(git diff --name-only HEAD~1 HEAD | grep '^comic/' | sed 's/\.md$//' | sed 's|^comic/|https://olificus.com/comic/|' || echo "")
+          # Get list of changed comic files and extract their slugs from frontmatter
+          COMIC_URLS=""
+          for file in $(git diff --name-only HEAD~1 HEAD | grep '^comic/.*\.md$' || true); do
+            if [ -f "$file" ]; then
+              # Extract slug from frontmatter using grep and awk
+              SLUG=$(grep -m 1 '^slug:' "$file" | awk '{print $2}' | tr -d '"' | tr -d "'" || true)
+              if [ -n "$SLUG" ]; then
+                COMIC_URLS="${COMIC_URLS}https://olificus.com/comic/$SLUG/"$'\n'
+              fi
+            fi
+          done
 
           # Get list of changed images
-          CHANGED_IMAGES=$(git diff --name-only HEAD~1 HEAD | grep '^images/' | sed 's|^|https://olificus.com/|' || echo "")
+          IMAGE_URLS=$(git diff --name-only HEAD~1 HEAD | grep '^images/' | sed 's|^|https://olificus.com/|' || true)
 
-          # Combine and format as JSON array
-          ALL_URLS=$(echo -e "$CHANGED_COMICS\n$CHANGED_IMAGES" | grep -v '^$' | jq -R . | jq -s .)
+          # Combine all URLs and format as JSON array
+          ALL_URLS=$(printf "%s\n%s" "$COMIC_URLS" "$IMAGE_URLS" | grep -v '^$' | jq -Rs 'split("\n") | map(select(length > 0))')
 
           echo "urls=$ALL_URLS" >> $GITHUB_OUTPUT
           echo "Changed URLs: $ALL_URLS"
