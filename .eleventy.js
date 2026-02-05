@@ -4,6 +4,14 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("admin");
     eleventyConfig.addPassthroughCopy("fonts");
     eleventyConfig.addPassthroughCopy("_headers");
+
+    // Add comic collection
+    eleventyConfig.addCollection("comic", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("comic/**/*.md").sort((a, b) => {
+            return b.date - a.date; // Sort by date, newest first
+        });
+    });
+
     return {
       dir: {
         input: ".",

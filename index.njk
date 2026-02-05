@@ -1,9 +1,15 @@
+---
+pagination:
+  data: collections.comic
+  size: 1
+  reverse: true
+---
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Olifcus</title>
+    <title>Olificus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -108,14 +114,18 @@
 <body>
 {% include "navbar.njk" %}
 
+{% set latestComic = pagination.items[0] %}
+{% if latestComic %}
 <div class="comic-preview">
-    <a href="/comic/s1/e1/">
+    <a href="{{ latestComic.url }}">
         <h2>
-            New Beginnings
+            {{ latestComic.data.title }}
             <span class="new-badge">New!</span>
         </h2>
-        <img src="/images/uploads/1000000486.png" alt="New Beginnings">
+        {% set firstImage = latestComic.content | safe | split('<img src="') | last | split('"') | first %}
+        <img src="{{ firstImage }}" alt="{{ latestComic.data.title }}">
     </a>
 </div>
+{% endif %}
 </body>
 </html>
