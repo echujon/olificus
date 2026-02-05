@@ -13,8 +13,10 @@ collections:
     label: "Comic"
     folder: "comic"
     create: true
+    nested:
+      depth: 2
     identifier_field: slug
-    slug: "{{fields.slug}}"
+    slug: "{{dirname}}/{{fields.slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "URL Slug (filename)", name: "slug", widget: "string", hint: "This will be the filename and URL" }
