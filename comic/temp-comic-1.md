@@ -3,7 +3,7 @@ title: Origin Story
 layout: comic.njk
 slug: comic/s1/e1
 permalink: /{{ slug }}/
-preview_image: /images/uploads/1000000486.png
+preview_image: /images/uploads/1000000285.png
 images: []
 ---
 <figure>
