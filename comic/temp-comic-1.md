@@ -1,7 +1,8 @@
 ---
 title: "New Beginnings "
 layout: comic.njk
-slug: s1-1
+slug: comic/s1/e1
+permalink: "/{{ slug }}/"
 images: []
 ---
 <figure>

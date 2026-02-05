@@ -33,7 +33,7 @@ jobs:
               # Extract slug from frontmatter using grep and awk
               SLUG=$(grep -m 1 '^slug:' "$file" | awk '{print $2}' | tr -d '"' | tr -d "'" || true)
               if [ -n "$SLUG" ]; then
-                COMIC_URLS="${COMIC_URLS}https://olificus.com/comic/$SLUG/"$'\n'
+                COMIC_URLS="${COMIC_URLS}https://olificus.com/$SLUG/"$'\n'
               fi
             fi
           done

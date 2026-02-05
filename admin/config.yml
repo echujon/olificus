@@ -13,13 +13,11 @@ collections:
     label: "Comic"
     folder: "comic"
     create: true
-    nested:
-      depth: 2
-    identifier_field: slug
-    slug: "{{dirname}}/{{fields.slug}}"
+    slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "URL Slug (filename)", name: "slug", widget: "string", hint: "This will be the filename and URL" }
+      - { label: "URL Slug", name: "slug", widget: "string", hint: "URL path for this comic (e.g., s1-e1)" }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: "/{{slug}}/" }
       - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Images"
         name: "images"
