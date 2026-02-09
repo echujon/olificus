@@ -118,6 +118,10 @@
         transform: translateY(-100%);
     }
 
+    .small-description {
+        font-size: 1.2rem;
+    }
+
     @media (max-width: 768px) {
         .hamburger {
             display: flex;
@@ -158,7 +162,7 @@
     <div class="navbar-container">
         <a href="/" class="navbar-logo">
             <img src="/images/olificus.jpg" alt="Olificus">
-            <span>Olificus: A Comical Chronicle</span>
+            <span>Olificus: <span class="small-description">A Web Comical Epic</span></span>
         </a>
         <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.navbar-links').classList.toggle('active')">
             <span></span>
