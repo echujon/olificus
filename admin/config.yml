@@ -28,3 +28,16 @@ collections:
           - { label: "Image", name: "image", widget: "image" }
           - { label: "Alt Text", name: "alt", widget: "string", required: false }
           - { label: "Caption", name: "caption", widget: "text", required: false }
+          - label: "Caption Font"
+            name: "caption_font"
+            widget: "select"
+            required: false
+            default: "Comic Neue"
+            options:
+              - { label: "Comic Neue (Default)", value: "Comic Neue" }
+              - { label: "Arial", value: "Arial" }
+              - { label: "Times New Roman", value: "Times New Roman" }
+              - { label: "Georgia", value: "Georgia" }
+              - { label: "Courier New", value: "Courier New" }
+              - { label: "Verdana", value: "Verdana" }
+              - { label: "Impact", value: "Impact" }

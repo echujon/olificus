@@ -91,21 +91,46 @@
                     label: "Caption",
                     widget: "text",
                     required: false
+                },
+                {
+                    name: "caption_font",
+                    label: "Caption Font",
+                    widget: "select",
+                    required: false,
+                    default: "Comic Neue",
+                    options: [
+                        { label: "Comic Neue (Default)", value: "Comic Neue" },
+                        { label: "Arial", value: "Arial" },
+                        { label: "Times New Roman", value: "Times New Roman" },
+                        { label: "Georgia", value: "Georgia" },
+                        { label: "Courier New", value: "Courier New" },
+                        { label: "Verdana", value: "Verdana" },
+                        { label: "Impact", value: "Impact" }
+                    ]
                 }
             ],
-            pattern: /<figure>\s*<img src="([^"]+)" alt="([^"]*)">\s*(?:<figcaption>(.*?)<\/figcaption>)?\s*<\/figure>/,
+            pattern: /<figure(?:\s+data-font="([^"]*)")?>\s*<img src="([^"]+)" alt="([^"]*)">\s*(?:<figcaption>(.*?)<\/figcaption>)?\s*<\/figure>/,
             fromBlock: function(match) {
                 return {
-                    image: match[1],
-                    alt: match[2] || '',
-                    caption: match[3] || ''
+                    caption_font: match[1] || 'Comic Neue',
+                    image: match[2],
+                    alt: match[3] || '',
+                    caption: match[4] || ''
                 };
             },
             toBlock: function(obj) {
-                var html = '<figure>\n';
+                var html = '<figure';
+                if (obj.caption_font && obj.caption_font !== 'Comic Neue') {
+                    html += ' data-font="' + obj.caption_font + '"';
+                }
+                html += '>\n';
                 html += '  <img src="' + obj.image + '" alt="' + (obj.alt || '') + '">\n';
                 if (obj.caption) {
-                    html += '  <figcaption>' + obj.caption + '</figcaption>\n';
+                    var fontStyle = '';
+                    if (obj.caption_font) {
+                        fontStyle = ' style="font-family: \'' + obj.caption_font + '\', system-ui, -apple-system, sans-serif;"';
+                    }
+                    html += '  <figcaption' + fontStyle + '>' + obj.caption + '</figcaption>\n';
                 }
                 html += '</figure>';
                 return html;
@@ -114,7 +139,8 @@
                 var html = '<figure style="text-align: center; margin: 2rem 0;">';
                 html += '<img src="' + obj.image + '" alt="' + (obj.alt || '') + '" style="max-width: 100%; height: auto;">';
                 if (obj.caption) {
-                    html += '<figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">' + obj.caption + '</figcaption>';
+                    var fontFamily = obj.caption_font ? obj.caption_font : 'Comic Neue';
+                    html += '<figcaption style="margin-top: 0.5rem; font-size: 1.5rem; font-weight: bold; color: #141313; font-family: \'' + fontFamily + '\', system-ui, -apple-system, sans-serif;">' + obj.caption + '</figcaption>';
                 }
                 html += '</figure>';
                 return html;

@@ -125,12 +125,13 @@
             <img src="{{ item.image }}" alt="{{ item.alt | default('') }}">
           </p>
           {% if item.caption %}
-            <div class="image-caption">{{ item.caption }}</div>
+            <div class="image-caption" {% if item.caption_font %}style="font-family: '{{ item.caption_font }}', system-ui, -apple-system, sans-serif;"{% endif %}>{{ item.caption }}</div>
           {% endif %}
         {% endfor %}
       {% else %}
         {{ content | safe }}
       {% endif %}
     </article>
+    {% include "footer.njk" %}
 </body>
 </html>
