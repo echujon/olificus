@@ -1,5 +1,5 @@
 ---
-title: Origin Story
+title: In the Beginning...
 layout: comic.njk
 slug: comic/s1/e1
 permalink: /{{ slug }}/
