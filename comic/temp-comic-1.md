@@ -35,8 +35,6 @@ images: []
   <figcaption style="font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;">...and he realized his goat was gone.</figcaption>
 </figure>
 
-
-
 <figure>
   <img src="/images/uploads/1000000487.png" alt="">
   <figcaption style="font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;">Luckily, she wasn't too far away.</figcaption>
@@ -48,7 +46,7 @@ images: []
 
 <figure>
   <img src="/images/uploads/1000000705.png" alt="">
-  <figcaption style="font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;">Unfortunately, chasing her had started the Goddess.</figcaption>
+  <figcaption style="font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;">Unfortunately, chasing her, the goat  started the Goddess.</figcaption>
 </figure>
 
 <figure>
