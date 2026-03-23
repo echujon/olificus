@@ -46,7 +46,7 @@ images: []
 
 <figure>
   <img src="/images/uploads/1000000705.png" alt="">
-  <figcaption style="font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;">Unfortunately, chasing her, the goat  started the Goddess.</figcaption>
+  <figcaption style="font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;">Unfortunately, chasing her, the goat  startled the Goddess.</figcaption>
 </figure>
 
 <figure>
