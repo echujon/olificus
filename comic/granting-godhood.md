@@ -1,7 +1,6 @@
 ---
 title: Granting Godhood
 slug: comic/s1/e2
-permalink: /{{slug}}/
 preview_image: /images/uploads/1000000967.png
 images:
   - caption_font: Comic Neue

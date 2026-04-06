@@ -2,7 +2,6 @@
 title: In the Beginning...
 layout: comic.njk
 slug: comic/s1/e1
-permalink: /{{ slug }}/
 preview_image: /images/uploads/1000000285.png
 images: []
 ---
