@@ -1,6 +1,6 @@
 ---
 title: Granting Godhood
-slug: s1-e2
+slug: comic/s1/e1
 permalink: /{{slug}}/
 preview_image: /images/uploads/1000000967.png
 images:
