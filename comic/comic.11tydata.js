@@ -1,6 +1,6 @@
 module.exports = {
-    layout: "comic.njk",
     eleventyComputed: {
-        permalink: data => `/${data.slug}/`
+        layout: data => data.slug ? "comic.njk" : undefined,
+        permalink: data => data.slug ? `/${data.slug}/` : undefined
     }
 };

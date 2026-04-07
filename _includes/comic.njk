@@ -112,6 +112,33 @@
             color: #141313;
             text-align: center;
         }
+
+        .comic-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 2rem auto 1rem;
+            padding: 0 1rem;
+        }
+
+        .comic-nav a {
+            text-decoration: none;
+            color: white;
+            background-color: #333;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-family: 'Comic Neue', system-ui, -apple-system, sans-serif;
+            transition: background-color 0.2s;
+        }
+
+        .comic-nav a:hover {
+            background-color: #555;
+        }
+
+        .comic-nav .spacer {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
@@ -132,6 +159,25 @@
         {{ content | safe }}
       {% endif %}
     </article>
+
+    {% set prev = collections.comic | prevComic(slug) %}
+    {% set next = collections.comic | nextComic(slug) %}
+    {% if prev or next %}
+    <nav class="comic-nav">
+        {% if prev %}
+            <a href="{{ prev.url }}">&larr; {{ prev.data.slug | episodeLabel }}</a>
+        {% else %}
+            <span class="spacer"></span>
+        {% endif %}
+        {% if next %}
+            <a href="{{ next.url }}">{{ next.data.slug | episodeLabel }} &rarr;</a>
+        {% else %}
+            <span class="spacer"></span>
+        {% endif %}
+
+    </nav>
+    {% endif %}
+
     {% include "footer.njk" %}
 </body>
 </html>
