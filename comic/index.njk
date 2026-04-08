@@ -70,15 +70,15 @@ permalink: /comic/
 <body>
     {% include "navbar.njk" %}
     <div class="comics-container">
-        <h1>Comics</h1>
+        <h1>Episodals</h1>
         <ul class="comic-list">
             {% for comic in collections.comic %}
             <li>
+                <h2>{{ comic.data.slug | episodeLabel }}: {{ comic.data.title }}</h2>
                 <a href="{{ comic.url }}">
                     {% if comic.data.preview_image %}
                         <img src="{{ comic.data.preview_image }}" alt="{{ comic.data.title }}">
                     {% endif %}
-                    <h2>{{ comic.data.slug | episodeLabel }}: {{ comic.data.title }}</h2>
                 </a>
             </li>
             {% endfor %}

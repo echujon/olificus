@@ -70,6 +70,53 @@
 
         CMS.registerPreviewTemplate('comic', PostPreview);
 
+        // Add event listener to dynamically update caption textarea size
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use MutationObserver to watch for changes in the DOM
+            var observer = new MutationObserver(function(mutations) {
+                // Find all caption size selects
+                var sizeSelects = document.querySelectorAll('[id*="caption_size"]');
+                sizeSelects.forEach(function(select) {
+                    select.addEventListener('change', function(e) {
+                        var size = e.target.value;
+                        var fontSize = size === 'small' ? '1rem' : size === 'large' ? '2rem' : '1.5rem';
+
+                        // Find the corresponding caption textarea
+                        var container = e.target.closest('.nc-widgetControl-root') || e.target.closest('[class*="control"]');
+                        if (container) {
+                            var textarea = container.querySelector('[id*="caption"]');
+                            if (textarea && textarea.tagName === 'TEXTAREA') {
+                                textarea.style.fontSize = fontSize;
+                                textarea.style.fontFamily = "'Comic Neue', system-ui, -apple-system, sans-serif";
+                            }
+                        }
+                    });
+                });
+
+                // Find all caption font selects
+                var fontSelects = document.querySelectorAll('[id*="caption_font"]');
+                fontSelects.forEach(function(select) {
+                    select.addEventListener('change', function(e) {
+                        var font = e.target.value;
+
+                        // Find the corresponding caption textarea
+                        var container = e.target.closest('.nc-widgetControl-root') || e.target.closest('[class*="control"]');
+                        if (container) {
+                            var textarea = container.querySelector('[id*="caption"]');
+                            if (textarea && textarea.tagName === 'TEXTAREA') {
+                                textarea.style.fontFamily = "'" + font + "', system-ui, -apple-system, sans-serif";
+                            }
+                        }
+                    });
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+
         // Register editor component for image with caption
         CMS.registerEditorComponent({
             id: "image-with-caption",
@@ -88,13 +135,14 @@
                 },
                 {
                     name: "caption",
-                    label: "Caption",
+                    label: "Caption (use <small>, <medium>, <large> tags for size)",
                     widget: "text",
-                    required: false
+                    required: false,
+                    hint: "Wrap text in tags: <small>text</small>, <medium>text</medium>, <large>text</large>"
                 },
                 {
                     name: "caption_font",
-                    label: "Caption Font",
+                    label: "Caption Font (applies to whole caption)",
                     widget: "select",
                     required: false,
                     default: "Comic Neue",
@@ -109,7 +157,7 @@
                     ]
                 }
             ],
-            pattern: /<figure(?:\s+data-font="([^"]*)")?>\s*<img src="([^"]+)" alt="([^"]*)">\s*(?:<figcaption>(.*?)<\/figcaption>)?\s*<\/figure>/,
+            pattern: /<figure(?:\s+data-font="([^"]*)")?>\s*<img src="([^"]+)" alt="([^"]*)">\s*(?:<figcaption[^>]*>(.*?)<\/figcaption>)?\s*<\/figure>/,
             fromBlock: function(match) {
                 return {
                     caption_font: match[1] || 'Comic Neue',
@@ -126,11 +174,16 @@
                 html += '>\n';
                 html += '  <img src="' + obj.image + '" alt="' + (obj.alt || '') + '">\n';
                 if (obj.caption) {
-                    var fontStyle = '';
-                    if (obj.caption_font) {
-                        fontStyle = ' style="font-family: \'' + obj.caption_font + '\', system-ui, -apple-system, sans-serif;"';
-                    }
-                    html += '  <figcaption' + fontStyle + '>' + obj.caption + '</figcaption>\n';
+                    var fontStyle = obj.caption_font ? "font-family: '" + obj.caption_font + "', system-ui, -apple-system, sans-serif;" : "";
+
+                    // Process caption to convert size tags to spans
+                    var processedCaption = obj.caption
+                        .replace(/<small>(.*?)<\/small>/g, '<span style="font-size: 1rem;">$1</span>')
+                        .replace(/<medium>(.*?)<\/medium>/g, '<span style="font-size: 1.5rem;">$1</span>')
+                        .replace(/<large>(.*?)<\/large>/g, '<span style="font-size: 2rem;">$1</span>');
+
+                    var styleAttr = fontStyle ? ' style="' + fontStyle + '"' : '';
+                    html += '  <figcaption' + styleAttr + '>' + processedCaption + '</figcaption>\n';
                 }
                 html += '</figure>';
                 return html;
@@ -140,7 +193,14 @@
                 html += '<img src="' + obj.image + '" alt="' + (obj.alt || '') + '" style="max-width: 100%; height: auto;">';
                 if (obj.caption) {
                     var fontFamily = obj.caption_font ? obj.caption_font : 'Comic Neue';
-                    html += '<figcaption style="margin-top: 0.5rem; font-size: 1.5rem; font-weight: bold; color: #141313; font-family: \'' + fontFamily + '\', system-ui, -apple-system, sans-serif;">' + obj.caption + '</figcaption>';
+
+                    // Process caption to convert size tags to styled spans for preview
+                    var processedCaption = obj.caption
+                        .replace(/<small>(.*?)<\/small>/g, '<span style="font-size: 1rem;">$1</span>')
+                        .replace(/<medium>(.*?)<\/medium>/g, '<span style="font-size: 1.5rem;">$1</span>')
+                        .replace(/<large>(.*?)<\/large>/g, '<span style="font-size: 2rem;">$1</span>');
+
+                    html += '<figcaption style="margin-top: 0.5rem; font-weight: bold; color: #141313; font-family: \'' + fontFamily + '\', system-ui, -apple-system, sans-serif;">' + processedCaption + '</figcaption>';
                 }
                 html += '</figure>';
                 return html;
